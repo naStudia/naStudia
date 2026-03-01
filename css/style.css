@@ -82,6 +82,12 @@ p.font-decorated {
 
 .highlight { color: var(--color-accent); }
 
+@media (max-width: 768px) {
+    p.font-decorated {
+        font-size: 3rem; /* Zmniejszamy czcionkę na telefonach */
+    }
+}
+
 #hero-desc-dynamic {
     font-size: 1.1rem;
     max-width: 600px;
