@@ -384,6 +384,54 @@ path.line-green {
     animation-delay: 2s;
 }
 
+/* --- RWD DLA WYKRESU LUKI SYSTEMOWEJ (MOBILE) --- */
+@media (max-width: 600px) {
+    .chart-container {
+        height: 280px; /* Lekko niższy na telefonach dla lepszych proporcji */
+        padding: 10px;
+    }
+
+    /* Pomniejszamy oś Y (pionową) i dociskamy ją do lewej krawędzi */
+    .chart-y-axis { 
+        left: 5px; 
+    }
+    .y-label { 
+        font-size: 0.55rem; 
+        letter-spacing: 0; 
+    }
+
+    /* Poszerzamy obszar roboczy SVG, żeby dać napisom oddech */
+    .chart-grid, svg.glitch-svg {
+        left: 25px; 
+        width: calc(100% - 35px); /* Odzyskujemy 25px szerokości roboczej */
+        right: 10px;
+    }
+
+    /* Dopasowujemy etykiety pod wykresem */
+    .chart-label { 
+        font-size: 0.6rem; /* Mniejsza czcionka zapobiega nachodzeniu */
+        bottom: 10px; 
+    }
+    .label-start { left: 25px; }
+    .label-may { right: 10px; }
+    .label-jan { 
+        left: 55%; 
+        white-space: nowrap; 
+    }
+
+    /* Kluczowe: Aktualizacja pozycji zielonego markera, by pokrywał się ze zmienionym SVG */
+    .success-marker {
+        left: calc(25px + (100% - 35px) * 0.55);
+    }
+
+    /* TRICK: Skracamy dymek, żeby nie "rozsadzał" prawego boku ekranu */
+    .success-marker::after {
+        content: 'WOLNE 😎'; 
+        font-size: 0.65rem;
+        padding: 4px 8px;
+    }
+}
+
 /* Comparison Box (Checklist) */
 .comparison-box {
     display: flex;
