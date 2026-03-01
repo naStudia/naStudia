@@ -1,0 +1,1250 @@
+:root {
+    --color-bg: #081D2A;
+    --color-text: #ffffff;
+    --color-accent: #6CE975;
+    --font-main: 'Outfit', sans-serif;
+    --font-serif: 'Young Serif', serif;
+}
+
+/* --- CONFIG --- */
+* { padding: 0; margin: 0; border: 0; }
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-main);
+    line-height: 1.5;
+    overflow-x: hidden;
+    width: 100%;
+}
+
+.anti-form-container input,
+.anti-form-container button,
+.parent-form-container input,
+.parent-form-container button {
+    font-family: inherit;
+}
+
+/* --- STYLES --- */
+body.scroll-locked {
+    overflow: hidden;
+    height: 100vh;
+}
+
+.container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* --- TOP LOGO --- */
+.top-nav {
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    z-index: 100;
+}
+
+#logo {
+    height: 9rem;
+    transition: height 0.3s;
+}
+
+/* --- HERO SECTION --- */
+#hero {
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    text-align: center;
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 70px;
+}
+
+/* --- TYPOGRAFIA HERO --- */
+p.font-decorated {
+    font-family: var(--font-serif);
+    font-size: 4rem;
+    line-height: 1.1;
+    margin-bottom: 20px;
+}
+
+.highlight { color: var(--color-accent); }
+
+#hero-desc-dynamic {
+    font-size: 1.1rem;
+    max-width: 600px;
+    opacity: 0.8;
+    min-height: 3em;
+}
+
+/* --- EFEKT BLUR (Zamazanie) --- */
+.blurred-state {
+    filter: blur(8px);
+    opacity: 0.5;
+    pointer-events: none; /* Nie da się zaznaczyć tekstu */
+    transition: filter 0.8s ease, opacity 0.8s ease;
+}
+
+.revealed-state {
+    filter: blur(0);
+    opacity: 1;
+}
+
+/* --- PRZEŁĄCZNIK (Ulepszony) --- */
+.user-toggle-container {
+    position: relative;
+    display: flex;
+    width: 100%;
+    max-width: 600px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 60px;
+    padding: 5px;
+    margin-top: 20px;
+    overflow: hidden;
+    backdrop-filter: blur(10px); /* Efekt szkła */
+}
+
+.user-toggle-container input { display: none; }
+
+.toggle-option {
+    flex: 1;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 18px 10px;
+    cursor: pointer;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.7);
+    transition: color 0.3s ease;
+    user-select: none;
+}
+
+.toggle-option .icon { font-size: 1.5rem; }
+.toggle-option .text { font-size: 0.9rem; letter-spacing: 1px; text-transform: uppercase; }
+
+/* Suwak (Slider) */
+.toggle-slider {
+    position: absolute;
+    top: 5px;
+    bottom: 5px;
+    left: 5px;
+    width: calc(50% - 5px);
+    background-color: var(--color-accent);
+    border-radius: 50px;
+    z-index: 1;
+    transform: scale(0); /* Początkowo ukryty/zmniejszony */
+    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55), left 0.4s ease; /* Efekt sprężyny */
+    opacity: 0;
+}
+
+/* Logika suwaka - kiedy coś jest wybrane */
+input:checked ~ .toggle-slider {
+    opacity: 1;
+    transform: scale(1); /* Pokaż suwak */
+}
+
+/* Pozycje suwaka */
+#role-student:checked ~ .toggle-slider { left: 5px; }
+#role-parent:checked ~ .toggle-slider { left: 50%; }
+
+/* Kolor tekstu po wybraniu */
+input:checked + label { color: var(--color-bg); }
+
+
+/* --- SCROLL INDICATOR --- */
+#scroll-indicator {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+#scroll-indicator.visible { opacity: 1; }
+
+.mouse-icon {
+    width: 20px;
+    height: 35px;
+    border: 2px solid rgba(255,255,255,0.5);
+    border-radius: 15px;
+    position: relative;
+}
+.mouse-icon::before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 4px;
+    background: #fff;
+    border-radius: 50%;
+    animation: scrollMouse 2s infinite;
+}
+@keyframes scrollMouse {
+    0% { top: 5px; opacity: 1; }
+    100% { top: 20px; opacity: 0; }
+}
+
+/* --- DYNAMICZNE SEKCJE (Style ogólne) --- */
+.section-block {
+    padding: 80px 20px;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.section-content { text-align: center; max-width: 800px; }
+.section-title { font-family: var(--font-serif); font-size: 2.5rem; margin-bottom: 30px; }
+.accent-text { color: var(--color-accent); }
+
+.chart-container {
+    position: relative;
+    width: 100%;
+    max-width: 700px;
+    height: 320px;
+    margin: 40px auto;
+    
+    /* Zastosowanie nowoczesnego szkła (Glassmorphism) */
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.05) 0%, rgba(0, 0, 0, 0.2) 100%);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    
+    padding: 20px;
+    overflow: hidden;
+    font-family: sans-serif;
+}
+
+/* Oś Y - tekstowa (po lewej stronie) */
+.chart-y-axis {
+    position: absolute;
+    left: 15px;
+    top: 30px;
+    bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 2;
+    pointer-events: none;
+}
+.y-label {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+}
+
+/* Subtelna, nowoczesna siatka w kropki zamiast topornych linii */
+.chart-grid {
+    position: absolute;
+    top: 20px; left: 40px; right: 20px; bottom: 40px;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+    z-index: 0;
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%); /* Siatka zanika ku dołowi */
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
+}
+
+/* Etykiety osi X */
+.chart-label {
+    position: absolute;
+    font-size: 0.75rem;
+    letter-spacing: 0.5px;
+    bottom: 15px;
+    z-index: 2;
+}
+.label-start { left: 40px; color: rgba(255, 255, 255, 0.6); }
+.label-jan { 
+    left: 55%; 
+    color: var(--color-accent, #4ade80); 
+    font-weight: 700; 
+    transform: translateX(-50%);
+    text-shadow: 0 0 10px rgba(74, 222, 128, 0.4);
+}
+.label-may { right: 20px; color: #ff4d4d; font-weight: 700; }
+
+/* SVG i Linie */
+svg.glitch-svg {
+    position: absolute;
+    top: 20px; left: 40px; right: 20px; bottom: 40px;
+    width: calc(100% - 60px);
+    height: calc(100% - 60px);
+    z-index: 1;
+    overflow: visible;
+}
+
+path.line {
+    fill: none;
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 2000; 
+    stroke-dashoffset: 2000;
+}
+
+/* Obszary wypełnienia pod liniami (pojawiają się z opóźnieniem) */
+path.area {
+    opacity: 0;
+}
+
+path.line-red {
+    stroke: #ff4d4d;
+    filter: drop-shadow(0 4px 6px rgba(255, 77, 77, 0.4));
+    animation-delay: 0.2s;
+}
+
+path.line-green {
+    stroke: var(--color-accent, #4ade80);
+    filter: drop-shadow(0 4px 8px rgba(74, 222, 128, 0.5));
+}
+
+/* Nowoczesny marker dla Stycznia */
+.success-marker {
+    position: absolute;
+    top: 20px;
+    bottom: 40px;
+    left: calc(40px + (100% - 60px) * 0.55); /* Obliczenie pozycji 55% względem SVG */
+    width: 2px;
+    background: linear-gradient(to bottom, rgba(74, 222, 128, 0.8), transparent);
+    z-index: 2;
+    opacity: 0;
+    animation: fadeInArea 0.5s ease-in forwards;
+    animation-delay: 2s; /* Pojawia się po narysowaniu linii */
+}
+
+/* Dymek "WOLNE" */
+.success-marker::after {
+    content: 'WOLNE OD TERAZ';
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    background: rgba(74, 222, 128, 0.15);
+    border: 1px solid rgba(74, 222, 128, 0.4);
+    backdrop-filter: blur(4px);
+    color: var(--color-accent, #4ade80);
+    font-size: 0.7rem;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-weight: bold;
+    white-space: nowrap;
+    box-shadow: 0 4px 12px rgba(74, 222, 128, 0.2);
+}
+
+/* Animacje */
+@keyframes drawLine {
+    to { stroke-dashoffset: 0; }
+}
+
+@keyframes fadeInArea {
+    to { opacity: 1; }
+}
+
+.chart-container.is-visible path.line {
+    animation: drawLine 2.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.chart-container.is-visible path.line-red {
+    animation-delay: 0.2s; /* Opóźnienie dla czerwonej linii */
+}
+
+.chart-container.is-visible path.area {
+    animation: fadeInArea 1s ease-in forwards;
+    animation-delay: 1.5s;
+}
+
+.chart-container.is-visible .success-marker {
+    animation: fadeInArea 0.5s ease-in forwards;
+    animation-delay: 2s;
+}
+
+/* Comparison Box (Checklist) */
+.comparison-box {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 40px;
+    text-align: left;
+}
+.compare-item {
+    /* Nowoczesny gradient tła (efekt szkła) */
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+    backdrop-filter: blur(12px); /* Wymaga wsparcia przeglądarek, świetnie wygląda na tłach z teksturą */
+    
+    padding: 24px 28px; /* Odrobinę więcej oddechu dla treści */
+    border-radius: 16px; /* Bardziej miękkie, nowoczesne rogi */
+    flex: 1;
+    min-width: 250px;
+    
+    /* Subtelne obramowanie całej karty */
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    
+    /* Płynne przejścia dla efektów hover */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    
+    /* Przygotowanie pod ozdobny lewy pasek */
+    position: relative;
+    overflow: hidden;
+}
+
+/* Ozdobny pasek z lewej strony z gradientem zamiast zwykłego border-left */
+.compare-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    transition: width 0.3s ease, opacity 0.3s ease;
+}
+
+/* Efekt po najechaniu myszką - karta lekko unosi się do góry */
+.compare-item:hover {
+    transform: translateY(-5px);
+}
+
+/* --- Karta "Ścieżka Standardowa" (Zła) --- */
+.compare-item.bad { 
+    border-left: none; /* Usuwamy stary border */
+}
+
+.compare-item.bad::before {
+    background: linear-gradient(to bottom, #ff4d4d, #ff8080);
+    box-shadow: 2px 0 12px rgba(255, 77, 77, 0.4);
+}
+
+.compare-item.bad:hover {
+    box-shadow: 0 12px 40px rgba(255, 77, 77, 0.15);
+    border-color: rgba(255, 77, 77, 0.3);
+}
+
+/* --- Karta "Podejście strategiczne" (Dobra) --- */
+.compare-item.good { 
+    border-left: none; /* Usuwamy stary border */
+}
+
+.compare-item.good::before {
+    /* Upewnij się, że zmienna --color-accent to ładny odcień zieleni, ew. zamień na konkretny HEX */
+    background: linear-gradient(to bottom, var(--color-accent, #4ade80), #22c55e);
+    box-shadow: 2px 0 12px rgba(74, 222, 128, 0.4);
+}
+
+.compare-item.good:hover {
+    box-shadow: 0 12px 40px rgba(74, 222, 128, 0.15);
+    border-color: rgba(74, 222, 128, 0.3);
+}
+
+.compare-item h3 { margin-bottom: 10px; font-size: 1.1rem; }
+.compare-item ul li { margin-bottom: 8px; font-size: 0.95rem; display: flex; gap: 10px; }
+
+
+/* --- SOCIAL PROOF BANNER --- */
+.social-proof-banner {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: linear-gradient(90deg, rgba(74, 222, 128, 0.1), transparent);
+    border-left: 4px solid var(--color-accent, #4ade80);
+    padding: 15px 20px;
+    border-radius: 0 8px 8px 0;
+    margin-bottom: 40px;
+}
+.proof-emoji {
+    font-size: 2rem;
+    filter: drop-shadow(0 0 8px rgba(74, 222, 128, 0.5));
+}
+.social-proof-banner p {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* --- QUEST TIMELINE --- */
+.quest-timeline {
+    position: relative;
+    padding-left: 40px; /* Miejsce na linię */
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* Pionowa neonowa linia */
+.quest-timeline::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    bottom: 20px;
+    left: 14px; /* Środek markerów */
+    width: 2px;
+    background: linear-gradient(to bottom, var(--color-accent, #4ade80), rgba(255, 255, 255, 0.1));
+    box-shadow: 0 0 10px var(--color-accent, #4ade80);
+    z-index: 0;
+}
+
+/* Pojedynczy krok */
+.quest-step {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    transition: transform 0.3s ease;
+}
+
+/* Znacznik (Kółko z levelem) */
+.step-marker {
+    flex-shrink: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #0f172a; /* Ciemne tło maskujące linię pod spodem */
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-left: -39px; /* Centrowanie na linii */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.quest-step:hover .step-marker {
+    border-color: var(--color-accent, #4ade80);
+    color: var(--color-accent, #4ade80);
+    box-shadow: 0 0 15px rgba(74, 222, 128, 0.3);
+}
+
+/* Specjalny marker dla wygranej (Lvl 3) */
+.winner-marker {
+    border-color: var(--color-accent, #4ade80);
+    color: var(--color-accent, #4ade80);
+    box-shadow: 0 0 20px rgba(74, 222, 128, 0.4);
+}
+
+/* Kontener z treścią (Glassmorphism) */
+.step-content {
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.05) 0%, rgba(0, 0, 0, 0.1) 100%);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 20px;
+    flex-grow: 1;
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; 
+}
+
+.quest-step:hover .step-content {
+    transform: translateX(10px);
+    border-color: rgba(74, 222, 128, 0.3); /* Opcjonalnie: lekkie zielone podświetlenie ramki przy najeździe */
+}
+
+.step-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.step-content h3 {
+    font-size: 1.2rem;
+    color: #fff;
+}
+
+.step-content p {
+    margin: 10px 0 0 0;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.6;
+}
+
+/* Krok z nagrodą (Wyróżnienie) */
+.highlight-step .step-content {
+    border: 1px solid rgba(74, 222, 128, 0.3);
+    box-shadow: 0 10px 30px rgba(74, 222, 128, 0.1);
+}
+
+/* Etykietka (Pigułka z tekstem) */
+.badge {
+    background: rgba(74, 222, 128, 0.2);
+    color: var(--color-accent, #4ade80);
+    font-size: 0.7rem;
+    font-weight: bold;
+    border-radius: 20px;
+    border: 1px solid rgba(74, 222, 128, 0.4);
+    
+    /* DODANE: Kuloodporne centrowanie tekstu w pigułkach */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 12px;
+    height: 24px;       /* Sztywna wysokość dla zachowania idealnych proporcji */
+    line-height: 1;     /* Kasuje domyślne odstępy przeglądarki nad i pod tekstem */
+    white-space: nowrap;
+    letter-spacing: 0.5px; /* Dodaje leciutki oddech między wielkimi literami */
+}
+
+/* --- ANTY-FORMULARZ --- */
+.anti-form-container {
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.03) 0%, rgba(0, 0, 0, 0.2) 100%);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 30px;
+    max-width: 650px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.form-step {
+    margin-bottom: 25px;
+}
+
+.step-title {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 12px;
+}
+
+/* Kafelki do klikania (Chips) */
+.chip-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.chip input {
+    display: none; /* Ukrywamy standardowe kółko radio */
+}
+
+.chip-label {
+    display: inline-block;
+    padding: 10px 16px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    user-select: none;
+}
+
+.chip:hover .chip-label {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+/* Stan zaznaczony (Zhakowany system) */
+.chip input:checked + .chip-label {
+    background: rgba(74, 222, 128, 0.15);
+    border-color: var(--color-accent, #4ade80);
+    color: var(--color-accent, #4ade80);
+    box-shadow: 0 0 15px rgba(74, 222, 128, 0.2);
+    font-weight: bold;
+}
+
+/* Pole na Discord/Mail */
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-icon {
+    position: absolute;
+    left: 15px;
+    color: rgba(255, 255, 255, 0.4);
+    font-weight: bold;
+}
+
+#contact-handle {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 12px 15px 12px 35px; /* Miejsce na małpę @ */
+    color: white;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+#contact-handle:focus {
+    outline: none;
+    border-color: var(--color-accent, #4ade80);
+    box-shadow: 0 0 10px rgba(74, 222, 128, 0.2);
+}
+
+/* Przycisk akcji */
+/* Nowy, ulepszony wygląd przycisku dla ucznia */
+.glitch-btn {
+    width: 100%;
+    margin-top: 15px;
+    padding: 16px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    
+    /* Główne kolory - zielony akcent, ciemny tekst */
+    background: var(--color-accent, #4ade80);
+    color: #0f172a; 
+    
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    
+    /* Neonowa poświata */
+    box-shadow: 0 4px 15px rgba(74, 222, 128, 0.25);
+}
+
+/* Efekt po najechaniu myszką */
+.glitch-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(74, 222, 128, 0.4);
+    background: #22c55e; /* Nieco intensywniejszy zielony */
+}
+
+/* Kiedy przycisk jest kliknięty / wyłączony (Hacking in progress) */
+.glitch-btn:disabled {
+    background: transparent;
+    border: 1px solid var(--color-accent, #4ade80);
+    color: var(--color-accent, #4ade80);
+    box-shadow: none;
+    transform: none;
+}
+
+/* --- TERMINAL SUCCESS SCREEN --- */
+
+/* Wrapper całego formularza potrzebny do animacji */
+#terminal-container {
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    overflow: hidden;
+    position: relative;
+}
+
+/* Klasa odpalana po kliknięciu buttona */
+.implode-effect {
+    animation: crtOff 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+/* Animacja wyłączania starego telewizora (CRT) */
+@keyframes crtOff {
+    0% { transform: scale(1, 1); opacity: 1; }
+    50% { transform: scale(1, 0.01); opacity: 0.8; }
+    100% { transform: scale(0, 0); opacity: 0; display: none; }
+}
+
+/* Style samego Terminala */
+.hidden-terminal {
+    display: none; /* Ukryty na start */
+    background: rgba(10, 15, 25, 0.95);
+    border: 1px solid var(--color-accent, #4ade80);
+    border-radius: 8px;
+    box-shadow: 0 0 30px rgba(74, 222, 128, 0.2);
+    font-family: 'Courier New', Courier, monospace; /* Czcionka koderska */
+    text-align: left;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease;
+}
+
+.terminal-header {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+.dot.red { background: #ff5f56; }
+.dot.yellow { background: #ffbd2e; }
+.dot.green { background: #27c93f; }
+
+.terminal-title {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.8rem;
+    margin-left: 10px;
+}
+
+.terminal-body {
+    padding: 20px;
+}
+
+/* Efekt pisania na maszynie */
+.typing-text {
+    color: var(--color-accent, #4ade80);
+    font-size: 0.95rem;
+    margin: 5px 0;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 0; /* Zaczyna od szerokości 0 */
+}
+
+.success-text {
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 0 0 8px var(--color-accent, #4ade80);
+    margin-top: 15px;
+}
+
+/* Klasa aktywująca terminal (pokazuje go z fade-in) */
+.show-terminal {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Animacja pisania tekstu - odpalana z JS */
+.type-animation {
+    animation: type 1s steps(40, end) forwards;
+}
+
+@keyframes type {
+    to { width: 100%; }
+}
+
+/* Opóźnienia dla kolejnych linijek */
+.delay-1 { animation-delay: 1s; }
+.delay-2 { animation-delay: 2s; }
+.delay-3 { animation-delay: 3s; }
+footer { padding: 40px; text-align: center; opacity: 0.5; font-size: 0.9rem; }
+
+/* --- FORMULARZ RODZICA (VIP CONCIERGE) --- */
+.parent-form-container {
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.05) 0%, rgba(0, 0, 0, 0.2) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    /* "Linia zaufania" na górze - psychologicznie buduje solidność */
+    border-top: 4px solid var(--color-accent, #4ade80); 
+    border-radius: 12px;
+    padding: 35px;
+    max-width: 750px;
+    margin: 0 auto;
+    text-align: left;
+    position: relative;
+    transition: all 0.5s ease;
+}
+
+/* Wersja dla rodzica ma bardziej kwadratowe, eleganckie "chipsy" */
+.parent-chips .chip-label {
+    border-radius: 6px; 
+    padding: 12px 20px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.parent-chips .chip:hover .chip-label {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-2px);
+}
+
+.parent-chips .chip input:checked + .chip-label {
+    background: rgba(74, 222, 128, 0.1);
+    border-color: var(--color-accent, #4ade80);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Mniej neonowy cień */
+}
+
+/* Dwa pola obok siebie na dużych ekranach */
+.input-row {
+    display: flex;
+    gap: 15px;
+}
+
+.input-row .input-wrapper {
+    flex: 1;
+}
+
+@media (max-width: 600px) {
+    .input-row {
+        flex-direction: column;
+    }
+}
+
+.vip-btn {
+    width: 100%;
+    margin-top: 20px;
+    padding: 18px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    background: var(--color-accent, #4ade80);
+    color: #000;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.vip-btn:hover {
+    box-shadow: 0 8px 25px rgba(74, 222, 128, 0.25);
+    transform: translateY(-2px);
+}
+
+/* --- KARTA SUKCESU DLA RODZICA (CONCIERGE) --- */
+.hidden-card {
+    display: none;
+    text-align: center;
+    padding: 20px 0;
+    opacity: 0;
+    transform: translateY(15px);
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.show-card {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.card-icon {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.3));
+}
+
+.hidden-card h3 {
+    color: var(--color-accent, #4ade80);
+    font-size: 1.6rem;
+    margin-bottom: 12px;
+}
+
+.hidden-card p {
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.6;
+    margin-bottom: 25px;
+    font-size: 1.05rem;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Plakietka statusu z pulsującą kropką */
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.pulse-dot {
+    width: 10px;
+    height: 10px;
+    background-color: var(--color-accent, #4ade80);
+    border-radius: 50%;
+    margin-right: 10px;
+    box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.7);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(74, 222, 128, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); }
+}
+
+/* --- STYLE INPUTÓW W FORMULARZU RODZICA --- */
+.parent-form-container .input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.parent-form-container .input-icon {
+    position: absolute;
+    left: 15px;
+    font-size: 1.2rem;
+    z-index: 2; /* Gwarantuje, że ikonka jest nad tłem inputa */
+    opacity: 0.8;
+}
+
+.parent-form-container input[type="text"] {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.4); /* Eleganckie ciemne tło */
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    padding: 16px 15px 16px 45px; /* Kluczowe: 45px z lewej robi miejsce na ikonkę! */
+    color: #fff;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-sizing: border-box; /* Zapobiega wylewaniu się inputa poza kontener */
+}
+
+/* Stylowanie tekstu wewnątrz inputa, gdy jest pusty (placeholder) */
+.parent-form-container input[type="text"]::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+/* Efekt po kliknięciu w input (Focus) */
+.parent-form-container input[type="text"]:focus {
+    outline: none;
+    border-color: var(--color-accent, #4ade80);
+    box-shadow: 0 0 15px rgba(74, 222, 128, 0.15);
+    background: rgba(0, 0, 0, 0.6);
+}
+
+/* --- PREMIUM MATRIX (ZARZĄDZANIE RYZYKIEM DLA RODZICA) --- */
+.premium-matrix-container {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+@media (max-width: 768px) {
+    .premium-matrix-container {
+        flex-direction: column;
+    }
+}
+
+.matrix-card {
+    flex: 1;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.05) 0%, rgba(0, 0, 0, 0.2) 100%);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 30px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.matrix-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Ozdobny pasek na górze karty */
+.risk-card {
+    border-top: 4px solid #ff4d4d;
+}
+.risk-card:hover {
+    box-shadow: 0 10px 30px rgba(255, 77, 77, 0.15);
+}
+
+.safe-card {
+    border-top: 4px solid var(--color-accent, #4ade80);
+}
+.safe-card:hover {
+    box-shadow: 0 10px 30px rgba(74, 222, 128, 0.15);
+}
+
+.matrix-header {
+    text-align: left;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.matrix-icon {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.matrix-header h3 {
+    margin: 0 0 5px 0;
+    font-size: 1.3rem;
+    color: #fff;
+}
+
+.matrix-header p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.data-row {
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+.data-row:last-child {
+    margin-bottom: 0;
+}
+
+.data-label {
+    display: block;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 8px;
+}
+
+.data-value {
+    font-size: 1rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.text-red { color: #ff4d4d; }
+.text-green { color: var(--color-accent, #4ade80); }
+
+/* Paski Postępu / Ryzyka */
+.bar-track {
+    width: 100%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    margin-bottom: 8px;
+    overflow: hidden;
+}
+
+.bar-fill {
+    height: 100%;
+    border-radius: 10px;
+    /* Paski animują się od szerokości 0 do podanej w HTML po załadowaniu (wymaga klasy .is-visible) */
+    width: 0; 
+    transition: width 1.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Kolory pasków */
+.high-risk {
+    background: linear-gradient(90deg, #ff4d4d, #ff8080);
+    box-shadow: 0 0 10px rgba(255, 77, 77, 0.5);
+}
+
+.low-risk {
+    background: linear-gradient(90deg, #22c55e, var(--color-accent, #4ade80));
+    box-shadow: 0 0 10px rgba(74, 222, 128, 0.5);
+}
+
+/* Animacja pasków - użyjemy istniejącej w JS klasy is-visible */
+.premium-matrix-container.is-visible .high-risk { width: 85% !important; }
+.premium-matrix-container.is-visible .low-risk { width: 10% !important; }
+
+/* Sekcja podsumowująca ROI pod kartami */
+.roi-summary {
+    background: rgba(74, 222, 128, 0.05);
+    border: 1px solid rgba(74, 222, 128, 0.2);
+    padding: 20px;
+    border-radius: 8px;
+    text-align: left;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+    border-left: 4px solid var(--color-accent, #4ade80);
+}
+
+.roi-summary strong {
+    color: var(--color-accent, #4ade80);
+}
+
+/* --- KARTA GWARANCYJNA (TRUST BOX) --- */
+.guarantee-box {
+    display: flex;
+    align-items: flex-start;
+    gap: 25px;
+    background: linear-gradient(145deg, rgba(74, 222, 128, 0.08) 0%, rgba(0, 0, 0, 0.3) 100%);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(74, 222, 128, 0.3); /* Zielonkawe/Złote obramowanie budzące zaufanie */
+    border-left: 5px solid var(--color-accent, #4ade80);
+    border-radius: 12px;
+    padding: 35px;
+    max-width: 800px;
+    margin: 0 auto;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2), inset 0 0 20px rgba(74, 222, 128, 0.05);
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Ozdobny błysk w tle karty */
+.guarantee-box::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(74, 222, 128, 0.05) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.guarantee-icon-wrapper {
+    flex-shrink: 0;
+    width: 70px;
+    height: 70px;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(74, 222, 128, 0.4);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 20px rgba(74, 222, 128, 0.2);
+    z-index: 1;
+}
+
+.guarantee-icon {
+    font-size: 2.2rem;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+}
+
+.guarantee-text {
+    z-index: 1;
+}
+
+.guarantee-title {
+    color: #fff;
+    font-size: 1.4rem;
+    margin: 0 0 12px 0;
+    letter-spacing: 0.5px;
+}
+
+.guarantee-text p {
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.6;
+    margin: 0;
+    font-size: 1.05rem;
+}
+
+.guarantee-text strong {
+    color: var(--color-accent, #4ade80);
+    font-weight: 600;
+}
+
+/* RWD - Dostosowanie do telefonów */
+@media (max-width: 600px) {
+    .guarantee-box {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 25px;
+    }
+    
+    .guarantee-icon-wrapper {
+        margin-bottom: 15px;
+    }
+}

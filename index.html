@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>naStudia {olimpiady}</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="img/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700&family=Young+Serif&display=swap" rel="stylesheet">
+</head>
+<body class="scroll-locked">
+    <nav class="top-nav">
+        <img id="logo" src="img/logo.svg" alt="logo naStudia" />
+    </nav>
+
+    <header id="hero">
+        <div class="container hero-content">
+            
+            <div id="hero-text-wrapper" class="blurred-state">
+                <p class="font-decorated">
+                    <span class="highlight">Strategia</span><br/>
+                    <span id="hero-subtitle-dynamic">zamiast stresu</span>
+                </h2>
+                <p id="hero-desc-dynamic">
+                    Wybierz swoją ścieżkę, aby odkodować odpowiednią strategię.
+                </p>
+            </div>
+
+            <div class="user-toggle-container">
+                <input type="radio" id="role-student" name="user-role" value="student">
+                <label for="role-student" class="toggle-option">
+                    <span class="icon">🎓</span>
+                    <span class="text">JESTEM UCZNIEM</span>
+                </label>
+
+                <input type="radio" id="role-parent" name="user-role" value="parent">
+                <label for="role-parent" class="toggle-option">
+                    <span class="icon">👔</span>
+                    <span class="text">JESTEM RODZICEM</span>
+                </label>
+
+                <div class="toggle-slider"></div>
+            </div>
+
+            <div id="scroll-indicator" class="hidden">
+                <span class="mouse-icon"></span>
+                <span class="arrow-down"></span>
+            </div>
+
+        </div>
+    </header>
+
+    <main id="dynamic-content">
+        </main>
+
+    <footer>
+        <div class="container">
+            <p>Nie ciężej. Mądrzej.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
