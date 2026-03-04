@@ -116,6 +116,30 @@ const contentData = {
                     </div>
                 </div>
             </section>
+
+            <section class="section-block" id="founder-student">
+                <div class="container section-content">                    
+                    <div class="founder-card">
+                        <div class="founder-avatar-wrapper">
+                            <div class="founder-avatar placeholder-parent">
+                                <img src="img/founder.png" alt="MŁ">
+                            </div>
+                        </div>
+                        <div class="founder-bio">
+                            <h3>Cześć, jestem Michał.</h3>
+                            <p>Kilka lat temu zorientowałem się, że standardowa ścieżka kucia do matury to pułapka. Zamiast liczyć na szczęście w maju, postanowiłem zagrać w inną grę.</p>
+                            <p>Wynik? <strong>Zgromadziłem więcej indeksów na uczelnie, niż mogłem wykorzystać</strong>, zanim moi rówieśnicy w ogóle zaczęli powtarzać materiał. Jako wielokrotny laureat i finalista ogólnopolskich oraz międzynarodowych konkursów, zgarnąłem też prestiżowe stypendia.</p>
+                            <p>Teraz pomagam takim jak Ty zrobić dokładnie to samo. Moi podopieczni pozyskali już łącznie ponad <strong>100 000 zł</strong> z dofinansowań i stypendiów na realizację swoich pomysłów. Pokażę Ci, jak zhakować ten system.</p>
+                            
+                            <div class="founder-stats">
+                                <span class="stat-pill">🏆 Laureat & Finalista</span>
+                                <span class="stat-pill">💰 100k+ PLN dla uczniów</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <section class="section-block" id="student-contact">
                 <div class="container section-content">
                     <h2 class="section-title"> <span class="accent-text">Zgadajmy się</span></h2>
@@ -317,6 +341,31 @@ const contentData = {
                             <p style="margin-top: 10px;">Ponadto, nasz model rozliczeń opiera się w dużej mierze na <em>Success Fee</em> (premii za sukces) – zarabiamy najwięcej wtedy, gdy Państwa dziecko fizycznie zdobywa indeks. <strong>Dzielimy ryzyko na pół.</strong> Jesteśmy w tym razem.</p>
                         </div>
                     </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section-block" id="founder-parent">
+                <div class="container section-content">                    
+                    <div class="founder-card parent-founder-card">
+                        <div class="founder-avatar-wrapper">
+                            <div class="founder-avatar placeholder-parent">
+                                <img src="img/founder.png" alt="MŁ">
+                            </div>
+                        </div>
+                        <div class="founder-bio">
+                            <h3>Michał Łukasiak</h3>
+                            <span class="founder-title">FOUNDER PROJEKTU</span>
+                            
+                            <p>Stworzyłem ten program, ponieważ z własnego doświadczenia wiem, jak skutecznie przełożyć potencjał ucznia na wymierne sukcesy naukowe i finansowe.</p>
+                            <p>Jako wielokrotny laureat i finalista konkursów ogólnopolskich oraz zdobywca czołowych miejsc na arenie międzynarodowej, <strong>zagwarantowałem sobie wstęp na wymarzone studia na długo przed maturą</strong>. Dziś tę samą metodykę przekazuję Państwa dzieciom.</p>
+                            <p>Od lat wspieram zdolną młodzież. Moim celem jest nie tylko zabezpieczenie ich przyszłości akademickiej, ale też budowanie realnego kapitału. Do tej pory pomogłem moim podopiecznym w uzyskaniu dofinansowań i stypendiów o łącznej wartości przekraczającej <strong>100 000 zł</strong></p>
+                            
+                            <div class="founder-stats parent-stats">
+                                <span class="stat-pill">🥇 Międzynarodowe Sukcesy</span>
+                                <span class="stat-pill">✅ Sprawdzona metodyka</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
