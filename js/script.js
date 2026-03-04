@@ -128,7 +128,7 @@ const contentData = {
                         <div class="founder-bio">
                             <h3>Cześć, jestem Michał.</h3>
                             <p>Kilka lat temu zorientowałem się, że standardowa ścieżka kucia do matury to pułapka. Zamiast liczyć na szczęście w maju, postanowiłem zagrać w inną grę.</p>
-                            <p>Wynik? <strong>Zgromadziłem więcej indeksów na uczelnie, niż mogłem wykorzystać</strong>, zanim moi rówieśnicy w ogóle zaczęli powtarzać materiał. Jako wielokrotny laureat i finalista ogólnopolskich oraz międzynarodowych konkursów, zgarnąłem też prestiżowe stypendia.</p>
+                            <p>Wynik? <strong>Zgromadziłem więcej indeksów na uczelnie, niż mogłem wykorzystać</strong>, zanim moi rówieśnicy w ogóle zaczęli powtarzać materiał. Jako wielokrotny laureat i finalista ogólnopolskich oraz międzynarodowych konkursów, zgarnąłem też prestiżowe stypendia. <strong> Wiem też, jak wygląda to od środka - pracowałem przy organizacji największego konkursu naukowego w Polsce</strong>.</p>
                             <p>Teraz pomagam takim jak Ty zrobić dokładnie to samo. Moi podopieczni pozyskali już łącznie ponad <strong>100 000 zł</strong> z dofinansowań i stypendiów na realizację swoich pomysłów. Pokażę Ci, jak zhakować ten system.</p>
                             
                             <div class="founder-stats">
@@ -358,7 +358,7 @@ const contentData = {
                             <span class="founder-title">FOUNDER PROJEKTU</span>
                             
                             <p>Stworzyłem ten program, ponieważ z własnego doświadczenia wiem, jak skutecznie przełożyć potencjał ucznia na wymierne sukcesy naukowe i finansowe.</p>
-                            <p>Jako wielokrotny laureat i finalista konkursów ogólnopolskich oraz zdobywca czołowych miejsc na arenie międzynarodowej, <strong>zagwarantowałem sobie wstęp na wymarzone studia na długo przed maturą</strong>. Dziś tę samą metodykę przekazuję Państwa dzieciom.</p>
+                            <p>Jako wielokrotny laureat i finalista konkursów ogólnopolskich oraz zdobywca czołowych miejsc na arenie międzynarodowej, <strong>zagwarantowałem sobie wstęp na wymarzone studia na długo przed maturą</strong>. Dziś tę samą metodykę przekazuję Państwa dzieciom. <strong>Co więcej, przez ponad rok pracowałem przy organizacji największego konkursu naukowego w Polsce</strong>.</p>
                             <p>Od lat wspieram zdolną młodzież. Moim celem jest nie tylko zabezpieczenie ich przyszłości akademickiej, ale też budowanie realnego kapitału. Do tej pory pomogłem moim podopiecznym w uzyskaniu dofinansowań i stypendiów o łącznej wartości przekraczającej <strong>100 000 zł</strong></p>
                             
                             <div class="founder-stats parent-stats">
